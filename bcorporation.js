@@ -24,6 +24,8 @@ const collect = async () => {
 };
 
 
+// TODO: Update data on a regular basis.
 collect().then(() => {
-  console.log('Number of B corporations: ', bcorporations.size);  
+  // TODO: Store data in a file.
+  console.log('Number of B corporations: ', bcorporations.size);
 });
