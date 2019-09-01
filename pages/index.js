@@ -25,8 +25,7 @@ const Index = props => (
         }
 
         li {
-          list-style: none;
-          margin: 5px 0;
+          margin: 5px 0 5px 20px;
         }
 
         a {
