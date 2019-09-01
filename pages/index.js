@@ -26,6 +26,7 @@ const Index = props => (
 
         li {
           margin: 5px 0 5px 20px;
+          list-style-type: circle;
         }
 
         a {
