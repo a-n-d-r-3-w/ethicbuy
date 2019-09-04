@@ -1,55 +1,40 @@
-import Layout from '../components/MyLayout';
+import { Component } from 'react';
+import { bcorporations } from './data/bcorporations';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
-const Index = props => (
-  <Layout>
-    <h1>Batman TV Shows</h1>
-    <ul>
-      {props.shows.map(show => (
-        <li key={show.id}>
-          <Link href="/p/[id]" as={`/p/${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-    <style jsx>{`
-        h1,
-        a {
-          font-family: 'Arial';
-        }
+class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: ''
+    }
+    this.updateUrl = this.updateUrl.bind(this);
+    this.search = this.search.bind(this);
+  }
 
-        ul {
-          padding: 0;
-        }
+  updateUrl(event) {
+    this.setState({ url: event.target.value });
+  }
 
-        li {
-          margin: 5px 0 5px 20px;
-          list-style-type: circle;
-        }
+  search() {
+    alert(this.state.url);
+  }
 
-        a {
-          text-decoration: none;
-          color: blue;
-        }
-
-        a:hover {
-          opacity: 0.6;
-        }
-      `}</style>
-  </Layout>
-);
-
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
-
-  console.log(`Show data fetched. Count: ${data.length}`);
-
-  return {
-    shows: data.map(entry => entry.show)
-  };
-};
+  render() {
+    return (
+      <div>
+        <h1>Ethicbuy</h1>
+        <input placeholder="Paste URL here" onChange={this.updateUrl} />
+        <button onClick={this.search}>Search</button>
+        <style jsx>{`
+          * {
+            font-family: 'Arial';
+          }
+        `}</style>
+      </div>
+    );
+  }
+}
 
 export default Index;

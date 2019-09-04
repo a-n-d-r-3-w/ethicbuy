@@ -1,4 +1,4 @@
-[
+export const bcorporations = [
   "Destination",
   "Pulse Brands Limited",
   "People With Purpose",
@@ -6,4 +6,4 @@
   "National Energy Improvement Fund",
   "Project Gen Z",
   "Patagonia"
-]
+];
