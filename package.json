@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "collect:bcorporation": "nodemon bcorporation.js"
+    "collect:bcorporations": "nodemon bcorporation.js"
   },
   "keywords": [],
   "author": "",
