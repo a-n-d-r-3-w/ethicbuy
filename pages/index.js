@@ -18,7 +18,14 @@ class Index extends Component {
   }
 
   search() {
-    alert(this.state.url);
+    // Copied from https://stackoverflow.com/a/1768114
+    const regex = RegExp("http[s]?://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})");
+    const match = this.state.url.match(regex);
+    if (match) {
+      alert(`ASIN found! ${match[4]}`);
+    } else {
+      alert('No ASIN found.');
+    }
   }
 
   render() {
