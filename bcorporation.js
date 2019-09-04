@@ -1,17 +1,33 @@
+const cheerio = require('cheerio');
 const fetch = require('isomorphic-unfetch');
-const cheerio = require('cheerio')
+const fs = require('fs');
 
 const collect = async () => {
   const bcorporations = new Set();
 
+  // Mock data
+  bcorporations.add('Destination');
+  bcorporations.add('Pulse Brands Limited');
+  bcorporations.add('People With Purpose');
+  bcorporations.add('Cathexis Consulting Inc');
+  bcorporations.add('National Energy Improvement Fund');
+  bcorporations.add('Project Gen Z');
+  bcorporations.add('Patagonia');
+  return bcorporations;
+
   let pageNum = 0;
-  while (true) {
+  while (pageNum === 0) {
+    console.log('pageNum: ', pageNum);
     let url = 'https://bcorporation.net/directory';
     if (pageNum > 0) {
       url += `?page=${pageNum}`;
     }
 
     const res = await fetch(url);
+    console.log('res:');
+    console.log('--------')
+    console.log(res);
+    console.log('--------')
     const html = await res.text();
 
     const $ = cheerio.load(html);
@@ -32,9 +48,6 @@ const collect = async () => {
   return bcorporations;
 };
 
-
-// TODO: Update data on a regular basis.
 collect().then(bcorporations => {
-  // TODO: Store data in a file.
-  console.log('Number of B corporations: ', bcorporations.size);
+  fs.writeFileSync('bcorporations.json', JSON.stringify(Array.from(bcorporations), null, 2));
 });
