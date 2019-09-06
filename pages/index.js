@@ -23,6 +23,15 @@ class Index extends Component {
     const match = this.state.url.match(regex);
     if (match) {
       alert(`ASIN found! ${match[4]}`);
+      const asin = match[4];
+      const infoUrl = `https://api.sellerapp.com/free_tool/product/details?product_id=${asin}`;
+      fetch(infoUrl)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(responseJson) {
+          alert(`Brand: ${responseJson.brand}`);
+        });
     } else {
       alert('No ASIN found.');
     }
