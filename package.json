@@ -1,7 +1,8 @@
 {
   "name": "ethicbuy",
   "version": "1.0.0",
-  "description": "",
+  "description": "ethicbuy",
+  "repository": "https://github.com/a-n-d-r-3-w/ethicbuy",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -14,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "csv": "^5.1.2",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.5",
     "react": "^16.9.0",

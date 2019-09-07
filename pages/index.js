@@ -7,7 +7,9 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: ''
+      url: '',
+      asin: '',
+      brand: ''
     }
     this.updateUrl = this.updateUrl.bind(this);
     this.search = this.search.bind(this);
@@ -22,15 +24,16 @@ class Index extends Component {
     const regex = RegExp("http[s]?://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})");
     const match = this.state.url.match(regex);
     if (match) {
-      alert(`ASIN found! ${match[4]}`);
       const asin = match[4];
+      this.setState({ asin })
       const infoUrl = `https://api.sellerapp.com/free_tool/product/details?product_id=${asin}`;
       fetch(infoUrl)
-        .then(function(response) {
+        .then(response => {
           return response.json();
         })
-        .then(function(responseJson) {
-          alert(`Brand: ${responseJson.brand}`);
+        .then(responseJson => {
+          const { brand } = responseJson;
+          this.setState({ brand });
         });
     } else {
       alert('No ASIN found.');
@@ -43,6 +46,8 @@ class Index extends Component {
         <h1>Ethicbuy</h1>
         <input placeholder="Paste URL here" onChange={this.updateUrl} />
         <button onClick={this.search}>Search</button>
+        <p>ASIN: {this.state.asin}</p>
+        <p>Brand: {this.state.brand}</p>
         <style jsx>{`
           * {
             font-family: 'Arial';
