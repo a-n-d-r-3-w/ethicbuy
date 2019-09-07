@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "csv": "^5.1.2",
+    "csv-parse": "^4.4.5",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.5",
     "react": "^16.9.0",
