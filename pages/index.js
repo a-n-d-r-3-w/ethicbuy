@@ -8,7 +8,8 @@ class Index extends Component {
     this.state = {
       url: '',
       asin: '',
-      brand: ''
+      brand: '',
+      isBCorporation: false
     }
     this.updateUrl = this.updateUrl.bind(this);
     this.search = this.search.bind(this);
@@ -33,6 +34,15 @@ class Index extends Component {
         .then(responseJson => {
           const { brand } = responseJson;
           this.setState({ brand });
+
+          fetch(`http://localhost:3000/api/isBCorporation?brand=${brand}`)
+            .then(response => {
+              return response.json();
+            })
+            .then(responseJson => {
+              const { isBCorporation } = responseJson;
+              this.setState({ isBCorporation });
+            })
         });
     } else {
       alert('No ASIN found.');
@@ -47,6 +57,7 @@ class Index extends Component {
         <button onClick={this.search}>Search</button>
         <p>ASIN: {this.state.asin}</p>
         <p>Brand: {this.state.brand}</p>
+        <p>Is B Corporation? {this.state.isBCorporation ? 'true' : 'false'}</p>
         <style jsx>{`
           * {
             font-family: 'Arial';
