@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { bcorporations } from './data/bcorporations';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
@@ -61,9 +60,7 @@ class Index extends Component {
 Index.getInitialProps = async function () {
   const res = await fetch('http://localhost:3000/api/bcorporations');
   const data = await res.json();
-  return {
-    // shows: data.map(entry => entry.show)
-  };
+  return data;
 }
 
 export default Index;
