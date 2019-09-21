@@ -36,7 +36,7 @@ class Index extends Component {
           const { brand } = responseJson;
           this.setState({ brand });
 
-          fetch(`http://localhost:3000/api/isBCorporation?brand=${brand}`)
+          fetch(`/api/isBCorporation?brand=${brand}`)
             .then(response => {
               return response.json();
             })
