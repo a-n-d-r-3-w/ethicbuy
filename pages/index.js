@@ -53,7 +53,7 @@ class Index extends Component {
     return (
       <div>
         <h1>Ethicbuy</h1>
-        <input placeholder="Paste URL here" onChange={this.updateUrl} />
+        <input placeholder="Paste URL here" onChange={this.updateUrl} value={this.state.url} />
         <button onClick={this.search}>Search</button>
         <p>ASIN: {this.state.asin}</p>
         <p>Brand: {this.state.brand}</p>
