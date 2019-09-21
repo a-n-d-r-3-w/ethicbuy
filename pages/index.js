@@ -13,6 +13,7 @@ class Index extends Component {
     }
     this.updateUrl = this.updateUrl.bind(this);
     this.search = this.search.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   updateUrl(event) {
@@ -49,11 +50,17 @@ class Index extends Component {
     }
   }
 
+  onKeyDown(event) {
+    if (event.keyCode === 13) { // ENTER key.
+      this.search();
+    }
+  }
+
   render() {
     return (
-      <div>
+      <>
         <h1>Ethicbuy</h1>
-        <input placeholder="Paste URL here" onChange={this.updateUrl} value={this.state.url} />
+        <input placeholder="Paste URL here" onChange={this.updateUrl} value={this.state.url} onKeyDown={this.onKeyDown}/>
         <button onClick={this.search}>Search</button>
         <p>ASIN: {this.state.asin}</p>
         <p>Brand: {this.state.brand}</p>
@@ -63,7 +70,7 @@ class Index extends Component {
             font-family: 'Arial';
           }
         `}</style>
-      </div>
+      </>
     );
   }
 }
