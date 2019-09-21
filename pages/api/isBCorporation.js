@@ -1,7 +1,8 @@
 import fs from 'fs';
 
-const json = fs.readFileSync('bCorporations.json');
-const bCorporations = JSON.parse(json);
+// Import data instead of using readFile because readFile is not yet supported
+// by Next.js API routes: https://github.com/zeit/next.js/issues/8251
+import { bCorporations } from './bCorporations';
 
 export default (req, res) => {
   const brand = req.query.brand;
